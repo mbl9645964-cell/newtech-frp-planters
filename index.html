@@ -1,0 +1,795 @@
+<title>New Tech FRP Planters</title>
+<meta name="description" content="Ultra-premium ecommerce concept for New Tech Engg. Works — FRP fibreglass planters and custom industrial mouldings, manufactured in Faridabad since 2015.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- tokens ---------- */
+  :root{
+    --paper:#F4EFE3;
+    --paper-dim:#EAE2D1;
+    --panel:#FFFDF8;
+    --ink:#1B1C15;
+    --ink-soft:#54533F;
+    --moss:#4B5A3B;
+    --moss-dark:#333F27;
+    --clay:#AF6B3E;
+    --bronze:#8C7B54;
+    --line: rgba(27,28,21,0.14);
+    --line-soft: rgba(27,28,21,0.08);
+    --shadow: 0 18px 40px -22px rgba(27,28,21,0.35);
+    --radius: 2px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15160F;
+      --paper-dim:#1C1D14;
+      --panel:#1F2016;
+      --ink:#EDE7D6;
+      --ink-soft:#B7AF98;
+      --moss:#8FA475;
+      --moss-dark:#6D8259;
+      --clay:#D08A57;
+      --bronze:#B7A578;
+      --line: rgba(237,231,214,0.16);
+      --line-soft: rgba(237,231,214,0.08);
+      --shadow: 0 18px 40px -22px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15160F;
+    --paper-dim:#1C1D14;
+    --panel:#1F2016;
+    --ink:#EDE7D6;
+    --ink-soft:#B7AF98;
+    --moss:#8FA475;
+    --moss-dark:#6D8259;
+    --clay:#D08A57;
+    --bronze:#B7A578;
+    --line: rgba(237,231,214,0.16);
+    --line-soft: rgba(237,231,214,0.08);
+    --shadow: 0 18px 40px -22px rgba(0,0,0,0.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;
+    font-size:15.5px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;text-wrap:balance;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  button{font-family:inherit;cursor:pointer;}
+  :focus-visible{outline:2px solid var(--clay);outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  }
+
+  .wrap{max-width:1280px;margin:0 auto;padding-inline:clamp(16px,4vw,56px);}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--moss);
+  }
+
+  /* ---------- announcement ---------- */
+  .announce{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-align:center;
+    padding:8px 16px;
+  }
+  .announce span{opacity:.55;margin:0 10px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .headbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-block:16px;gap:24px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;}
+  .brand .mark{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--moss);color:var(--paper-dim);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:700;flex:none;
+  }
+  .brand .name{font-size:17px;font-weight:600;line-height:1.1;}
+  .brand .name small{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;
+    letter-spacing:.1em;color:var(--ink-soft);font-weight:400;text-transform:uppercase;margin-top:2px;
+  }
+  nav.primary{display:flex;gap:28px;font-size:13.5px;font-weight:600;}
+  nav.primary a{opacity:.82;border-bottom:1px solid transparent;padding-bottom:2px;}
+  nav.primary a:hover{opacity:1;border-color:var(--clay);}
+  .head-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{
+    position:relative;width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);background:var(--panel);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .icon-btn svg{width:17px;height:17px;stroke:var(--ink);}
+  .badge{
+    position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 3px;
+    background:var(--clay);color:#fff;border-radius:20px;font-size:10px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 22px;border-radius:2px;font-weight:700;font-size:13px;
+    letter-spacing:.02em;border:1px solid transparent;
+  }
+  .btn-dark{background:var(--ink);color:var(--paper);}
+  .btn-dark:hover{background:var(--moss-dark);}
+  .btn-outline{border-color:var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--paper);}
+  .menu-toggle{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:0;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-copy{
+    padding:clamp(40px,7vw,88px) clamp(16px,4vw,56px);
+    display:flex;flex-direction:column;justify-content:center;gap:22px;
+  }
+  .hero-copy h1{font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-.01em;}
+  .hero-copy h1 em{font-style:italic;color:var(--moss);}
+  .hero-copy p.lede{max-width:44ch;color:var(--ink-soft);font-size:16.5px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;}
+  .hero-stats{
+    display:flex;gap:clamp(18px,3vw,36px);margin-top:18px;flex-wrap:wrap;
+    border-top:1px solid var(--line);padding-top:22px;
+  }
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:24px;font-weight:600;}
+  .stat span{font-size:11.5px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;}
+  .hero-visual{
+    position:relative;min-height:420px;background:var(--paper-dim);
+    background-size:cover;background-position:center;
+    border-left:1px solid var(--line);
+  }
+  .hero-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .hero-tag{
+    position:absolute;left:18px;bottom:18px;background:var(--panel);
+    border:1px solid var(--line);padding:10px 14px;font-size:12px;
+    box-shadow:var(--shadow);max-width:230px;
+  }
+  .hero-tag b{display:block;font-family:'Fraunces',serif;font-size:14px;margin-bottom:2px;}
+
+  /* ---------- section frame ---------- */
+  section{padding-block:clamp(52px,7vw,88px);border-bottom:1px solid var(--line);}
+  .sec-head{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+    margin-bottom:clamp(26px,4vw,44px);flex-wrap:wrap;
+  }
+  .sec-head h2{font-size:clamp(26px,3.2vw,38px);}
+  .sec-head p{max-width:42ch;color:var(--ink-soft);font-size:14.5px;margin-top:8px;}
+
+  /* ---------- category strip ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .cat-card{
+    position:relative;border:1px solid var(--line);aspect-ratio:4/5;overflow:hidden;background:var(--paper-dim);
+  }
+  .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .cat-card:hover img{transform:scale(1.06);}
+  .cat-card .lbl{
+    position:absolute;left:0;right:0;bottom:0;padding:14px;
+    background:linear-gradient(to top, rgba(20,20,14,.72), transparent);
+    color:#F4EFE3;font-family:'Fraunces',serif;font-size:15px;font-weight:600;
+  }
+
+  /* ---------- product grid ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;}
+  .filter-chip{
+    padding:8px 16px;border:1px solid var(--line);border-radius:30px;font-size:12.5px;font-weight:600;
+    background:var(--panel);
+  }
+  .filter-chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .card{
+    background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;
+  }
+  .card-media{
+    position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--paper-dim);
+    border-bottom:1px solid var(--line);
+  }
+  .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease;}
+  .card:hover .card-media img{transform:scale(1.05);}
+  .card-media .sku{
+    position:absolute;top:10px;left:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;
+    background:rgba(20,20,14,.65);color:#F4EFE3;padding:3px 7px;letter-spacing:.05em;
+  }
+  .quick-add{
+    position:absolute;right:10px;bottom:10px;width:36px;height:36px;border-radius:50%;
+    background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    opacity:0;transform:translateY(6px);transition:.2s ease;
+  }
+  .card:hover .quick-add{opacity:1;transform:translateY(0);}
+  .quick-add svg{width:15px;height:15px;stroke:var(--ink);}
+  .card-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .card-body h3{font-size:15.5px;line-height:1.3;}
+  .card-body .material{font-size:11.5px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+  .size-row{display:flex;gap:6px;margin-top:2px;flex-wrap:wrap;}
+  .size-pill{
+    font-size:11px;padding:5px 9px;border:1px solid var(--line);background:var(--paper-dim);
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .size-pill.selected{background:var(--moss);color:var(--paper-dim);border-color:var(--moss);}
+  .card-foot{
+    margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:6px;
+  }
+  .price-tag{font-family:'Fraunces',serif;font-weight:600;font-size:14px;color:var(--ink-soft);}
+  .add-btn{
+    padding:9px 14px;font-size:12px;font-weight:700;background:var(--ink);color:var(--paper);border:none;
+    display:flex;align-items:center;gap:6px;
+  }
+  .add-btn:hover{background:var(--moss-dark);}
+  .add-btn.added{background:var(--moss);}
+
+  /* ---------- process / industrial (blueprint) ---------- */
+  .blueprint{
+    background:var(--ink);color:var(--paper);border-radius:2px;padding:clamp(28px,5vw,52px);
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
+  .blueprint .sec-head h2, .blueprint .sec-head p{color:var(--paper);}
+  .blueprint .sec-head p{color:color-mix(in srgb, var(--paper) 70%, transparent);}
+  .blueprint .eyebrow{color:#B6C79E;}
+  .indu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .indu-card{
+    border:1px solid rgba(244,239,227,.22);padding:20px 18px;display:flex;flex-direction:column;gap:12px;
+    background:rgba(244,239,227,.03);
+  }
+  .indu-card svg{width:38px;height:38px;stroke:#EFE9D8;fill:none;stroke-width:1.4;}
+  .indu-card h4{font-size:15px;color:#F4EFE3;}
+  .indu-card p{font-size:12.8px;color:rgba(244,239,227,.68);margin:0;}
+  .indu-card .hsn{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#B6C79E;letter-spacing:.04em;}
+  .process-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:28px;}
+  .process-step{border-top:2px solid rgba(244,239,227,.3);padding-top:12px;}
+  .process-step .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#B6C79E;}
+  .process-step h5{font-family:'Fraunces',serif;font-size:14.5px;color:#F4EFE3;margin:6px 0 4px;font-weight:600;}
+  .process-step p{font-size:12px;color:rgba(244,239,227,.62);margin:0;}
+
+  /* ---------- factsheet / about ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .about-copy p{color:var(--ink-soft);max-width:52ch;}
+  .fact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px;}
+  .fact{background:var(--panel);padding:16px 18px;}
+  .fact .k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .fact .v{font-family:'Fraunces',serif;font-size:16px;margin-top:4px;font-weight:600;}
+  .rating-card{
+    border:1px solid var(--line);background:var(--panel);padding:26px;display:flex;flex-direction:column;gap:16px;
+  }
+  .rating-top{display:flex;align-items:baseline;gap:10px;}
+  .rating-top b{font-family:'Fraunces',serif;font-size:44px;line-height:1;}
+  .stars{color:var(--clay);letter-spacing:2px;font-size:17px;}
+  .rating-bar-row{display:flex;align-items:center;gap:10px;font-size:12px;}
+  .rating-bar{flex:1;height:6px;background:var(--paper-dim);border-radius:4px;overflow:hidden;}
+  .rating-bar > i{display:block;height:100%;background:var(--moss);}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+    background:var(--moss-dark);color:#F4EFE3;padding:clamp(30px,5vw,48px);border-radius:2px;
+  }
+  .cta-band h3{color:#F4EFE3;font-size:clamp(22px,3vw,30px);max-width:26ch;}
+  .cta-band .btn-outline{border-color:#F4EFE3;color:#F4EFE3;}
+  .cta-band .btn-outline:hover{background:#F4EFE3;color:var(--moss-dark);}
+
+  /* ---------- footer ---------- */
+  footer{padding-block:48px 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;}
+  .foot-grid h5{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;font-family:'IBM Plex Mono',monospace;font-weight:500;}
+  .foot-grid a, .foot-grid li{font-size:13.5px;margin-bottom:9px;display:block;color:var(--ink-soft);}
+  .foot-grid a:hover{color:var(--ink);}
+  .foot-grid ul{list-style:none;padding:0;margin:0;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:36px;padding-top:20px;
+    border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;
+  }
+
+  /* ---------- cart drawer ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(15,16,10,.42);z-index:60;opacity:0;pointer-events:none;transition:opacity .25s ease;
+  }
+  .overlay.open{opacity:1;pointer-events:auto;}
+  .drawer{
+    position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--panel);z-index:61;
+    box-shadow:var(--shadow);transform:translateX(100%);transition:transform .3s ease;
+    display:flex;flex-direction:column;
+    padding-top:env(safe-area-inset-top,0px);
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line);}
+  .drawer-head h3{font-size:18px;}
+  .drawer-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:none;}
+  .drawer-close svg{width:14px;height:14px;stroke:var(--ink);}
+  .drawer-items{flex:1;overflow-y:auto;padding:14px 22px;display:flex;flex-direction:column;gap:16px;}
+  .drawer-empty{color:var(--ink-soft);font-size:13.5px;padding-top:30px;text-align:center;}
+  .line-item{display:flex;gap:12px;border-bottom:1px solid var(--line-soft);padding-bottom:14px;}
+  .line-item img{width:60px;height:60px;object-fit:cover;border:1px solid var(--line);flex:none;}
+  .li-info{flex:1;display:flex;flex-direction:column;gap:4px;}
+  .li-info .nm{font-size:13.5px;font-weight:600;}
+  .li-info .sz{font-size:11.5px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+  .li-qty{display:flex;align-items:center;gap:8px;margin-top:4px;}
+  .li-qty button{width:22px;height:22px;border:1px solid var(--line);background:var(--paper-dim);font-size:13px;line-height:1;}
+  .li-remove{font-size:11px;color:var(--clay);text-decoration:underline;background:none;border:none;padding:0;align-self:flex-start;}
+  .drawer-foot{border-top:1px solid var(--line);padding:18px 22px 22px;display:flex;flex-direction:column;gap:12px;}
+  .drawer-foot textarea{
+    width:100%;resize:vertical;min-height:56px;border:1px solid var(--line);background:var(--paper-dim);
+    padding:10px;font-family:inherit;font-size:13px;color:var(--ink);
+  }
+  .drawer-note{font-size:11px;color:var(--ink-soft);}
+  .drawer-submit{width:100%;padding:14px;background:var(--ink);color:var(--paper);border:none;font-weight:700;font-size:13.5px;}
+  .drawer-submit.done{background:var(--moss);}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);z-index:80;
+    background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:3px;font-size:13px;
+    opacity:0;transition:.25s ease;pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    nav.primary{display:none;}
+    .menu-toggle{display:flex;}
+    .hero{grid-template-columns:1fr;}
+    .hero-visual{min-height:320px;order:-1;}
+    .cat-grid, .product-grid{grid-template-columns:repeat(2,1fr);}
+    .indu-grid{grid-template-columns:repeat(2,1fr);}
+    .process-strip{grid-template-columns:repeat(2,1fr);}
+    .about-grid{grid-template-columns:1fr;gap:34px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:520px){
+    .cat-grid, .product-grid, .indu-grid, .process-strip{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:16px;}
+    .cta-band{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+
+<div class="announce">MANUFACTURER SINCE 2015 <span>&middot;</span> FARIDABAD, HARYANA <span>&middot;</span> GST 06CNLPK9336D1ZU &middot; VERIFIED <span>&middot;</span> 4.5★ FROM 17 BUYER REVIEWS</div>
+
+<header>
+  <div class="wrap headbar">
+    <a class="brand" href="#top">
+      <span class="mark">NT</span>
+      <span class="name">New Tech Engg. Works<small>FRP &amp; Fibreglass Manufacturing</small></span>
+    </a>
+    <nav class="primary">
+      <a href="#shop">Planters &amp; Gamla</a>
+      <a href="#industrial">Industrial FRP</a>
+      <a href="#process">Manufacturing</a>
+      <a href="#about">Factory &amp; Trust</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="head-actions">
+      <button class="icon-btn" id="menuToggle" aria-label="Menu" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" id="cartToggle" aria-label="Open quote cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 6h2l1.6 10.4A2 2 0 0 0 8.6 18h8.8a2 2 0 0 0 2-1.6L21 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+      <a class="btn btn-dark" href="tel:+91" id="callBtn">Call Now</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-block:0;border-bottom:1px solid var(--line);">
+    <div class="hero-copy">
+      <span class="eyebrow">FRP &middot; Fibreglass &middot; Faridabad</span>
+      <h1>Formed for permanence,<br><em>finished</em> for presentation.</h1>
+      <p class="lede">A decade of moulding fibreglass planters, gamlas and custom FRP components from our Faridabad works — engineered for outdoor life, finished for architects and landscapers who don't compromise.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn btn-dark">Browse the Collection</a>
+        <a href="#industrial" class="btn btn-outline">Industrial &amp; Bulk Orders</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>2015</b><span>Est. &middot; Faridabad</span></div>
+        <div class="stat"><b>11 yrs</b><span>On IndiaMART</span></div>
+        <div class="stat"><b>4.5 / 5</b><span>17 Buyer Ratings</span></div>
+        <div class="stat"><b>&le;10</b><span>Person Workshop</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="images/p5.jpg" alt="FRP fibreglass tall planter, hero" loading="eager">
+      <div class="hero-tag"><b>Tall Planter Series</b>Hand-laid fibreglass, UV-stable gelcoat finish, made to order.</div>
+    </div>
+  </section>
+
+  <section id="shop" class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">The Collection</span>
+        <h2>Planters &amp; gamla, by form</h2>
+        <p>Every piece is hand-moulded FRP (fibreglass-reinforced plastic) — light enough to place, rigid enough to stay. Add pieces to a quote request; pricing is confirmed against size, colour and order volume.</p>
+      </div>
+      <a href="#industrial" class="btn btn-outline" style="flex:none;">Need a custom mould?</a>
+    </div>
+
+    <div class="filters">
+      <button class="filter-chip active" data-filter="all">All Forms</button>
+      <button class="filter-chip" data-filter="tall">Tall</button>
+      <button class="filter-chip" data-filter="round">Round &amp; Gamla</button>
+      <button class="filter-chip" data-filter="cube">Cube &amp; Square</button>
+      <button class="filter-chip" data-filter="tray">Rectangular Tray</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </section>
+
+  <section class="wrap" style="padding-top:0;">
+    <div class="cat-grid">
+      <a class="cat-card" href="#shop" data-scrollfilter="tall">
+        <img src="images/p5.jpg" alt="Tall planters">
+        <span class="lbl">Tall Planters</span>
+      </a>
+      <a class="cat-card" href="#shop" data-scrollfilter="cube">
+        <img src="images/p6.jpg" alt="Cube and square planters">
+        <span class="lbl">Cube &amp; Square</span>
+      </a>
+      <a class="cat-card" href="#shop" data-scrollfilter="tray">
+        <img src="images/p1.jpg" alt="Rectangular tray planters">
+        <span class="lbl">Rectangular Trays</span>
+      </a>
+      <a class="cat-card" href="#shop" data-scrollfilter="round">
+        <img src="images/p3.jpg" alt="Round gamla planters">
+        <span class="lbl">Round Gamla</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="industrial" class="wrap">
+    <div class="blueprint">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Beyond Planters</span>
+          <h2>Custom FRP &amp; industrial mouldings</h2>
+          <p>Where it started: New Tech Engg. Works was founded on fibreglass work for transport and infrastructure. We still take on custom mould jobs at the same Faridabad workshop.</p>
+        </div>
+        <a href="#contact" class="btn" style="background:#F4EFE3;color:#1B1C15;flex:none;">Request a Custom Quote</a>
+      </div>
+      <div class="indu-grid">
+        <div class="indu-card">
+          <svg viewBox="0 0 48 48"><path d="M6 22 24 8l18 14M10 22v18h28V22" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 40V28h12v12" stroke-linejoin="round"/></svg>
+          <h4>E-Rickshaw Fibre Roof</h4>
+          <p>Moulded fibreglass canopy sections, made to fit standard e-rickshaw chassis.</p>
+          <span class="hsn">HSN 8480.41 — mould class</span>
+        </div>
+        <div class="indu-card">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="20" r="10"/><path d="M24 10v20M14 20h20M17 13l14 14M31 13 17 27" stroke-linecap="round"/><path d="M14 38h20" stroke-linecap="round"/></svg>
+          <h4>Fibre Turbo Ventilator</h4>
+          <p>Wind-driven roof ventilators, fibreglass body cast for corrosion resistance.</p>
+          <span class="hsn">HSN 8480.41 — mould class</span>
+        </div>
+        <div class="indu-card">
+          <svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="2"/><path d="M8 20h32M18 8v12M28 8v12" /><circle cx="18" cy="30" r="2"/><circle cx="30" cy="30" r="2"/></svg>
+          <h4>Fibre Air Cooler Body</h4>
+          <p>Moulded outer shells for desert / air coolers — lightweight, weatherproof.</p>
+          <span class="hsn">HSN 8480.41 — mould class</span>
+        </div>
+        <div class="indu-card">
+          <svg viewBox="0 0 48 48"><path d="M6 34h36M10 34V20l8-6h12l8 6v14" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 34v-8h12v8" stroke-linejoin="round"/></svg>
+          <h4>Railway Platform Coping Mould</h4>
+          <p>Precision FRP moulds used to cast platform coping / edge sections.</p>
+          <span class="hsn">HSN 8480.20 — mould base</span>
+        </div>
+      </div>
+
+      <div id="process" class="process-strip">
+        <div class="process-step"><span class="num">01</span><h5>Mould Design</h5><p>Pattern built to client drawing or existing part.</p></div>
+        <div class="process-step"><span class="num">02</span><h5>Resin Layup</h5><p>Hand lay-up of fibreglass matting with catalysed resin.</p></div>
+        <div class="process-step"><span class="num">03</span><h5>Curing</h5><p>Controlled cure for dimensional stability.</p></div>
+        <div class="process-step"><span class="num">04</span><h5>Trim &amp; Finish</h5><p>De-moulding, edge trim, gelcoat / paint finish.</p></div>
+        <div class="process-step"><span class="num">05</span><h5>QC &amp; Dispatch</h5><p>Fit &amp; finish check before crating for dispatch.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <span class="eyebrow">About the Works</span>
+        <h2>A Faridabad workshop, running since 2015.</h2>
+        <p>Founded in 2015 in Faridabad, Haryana, New Tech Engg. Works is a sole-proprietorship manufacturing unit. We began with fibreglass work for e-rickshaws, roof ventilators and air-cooler bodies, and have since built out a full line of FRP planters and gamlas for homes, hotels and landscaping projects — all produced in the same works, to order.</p>
+        <p>Every quote is worked out against the piece, the finish and the volume — there is no fixed catalogue price, because no two orders leave the workshop the same way.</p>
+        <div class="fact-grid">
+          <div class="fact"><div class="k">Nature of Business</div><div class="v">Manufacturer</div></div>
+          <div class="fact"><div class="k">Legal Status</div><div class="v">Proprietorship</div></div>
+          <div class="fact"><div class="k">Team Size</div><div class="v">Up to 10 people</div></div>
+          <div class="fact"><div class="k">GST Reg.</div><div class="v">2017</div></div>
+          <div class="fact"><div class="k">GST Number</div><div class="v mono" style="font-size:13px;">06CNLPK9336D1ZU</div></div>
+          <div class="fact"><div class="k">Location</div><div class="v">Faridabad, Haryana</div></div>
+        </div>
+      </div>
+      <div class="rating-card">
+        <span class="eyebrow">Buyer Trust — IndiaMART</span>
+        <div class="rating-top"><b>4.5</b><span class="stars">★★★★★</span></div>
+        <div style="font-size:12.5px;color:var(--ink-soft);">Aggregate of 17 buyer ratings &middot; TrustSEAL Verified &middot; 11 years on platform</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+          <div class="rating-bar-row"><span class="mono" style="width:14px;">5</span><div class="rating-bar"><i style="width:78%"></i></div></div>
+          <div class="rating-bar-row"><span class="mono" style="width:14px;">4</span><div class="rating-bar"><i style="width:14%"></i></div></div>
+          <div class="rating-bar-row"><span class="mono" style="width:14px;">3</span><div class="rating-bar"><i style="width:5%"></i></div></div>
+          <div class="rating-bar-row"><span class="mono" style="width:14px;">2</span><div class="rating-bar"><i style="width:2%"></i></div></div>
+          <div class="rating-bar-row"><span class="mono" style="width:14px;">1</span><div class="rating-bar"><i style="width:1%"></i></div></div>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--ink-soft);">Payment Protection available via IndiaMART on qualifying orders.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="border-bottom:none;">
+    <div class="cta-band">
+      <h3>Fitting out a hotel, society or landscape project? Talk to the works directly.</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#contact" class="btn" style="background:#F4EFE3;color:var(--moss-dark);">Request Bulk Quote</a>
+        <a href="tel:+91" class="btn btn-outline">Call the Workshop</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h5>New Tech Engg. Works</h5>
+        <p style="max-width:34ch;color:var(--ink-soft);font-size:13.5px;">Fibreglass &amp; FRP manufacturing unit, Faridabad, Haryana — proprietorship, established 2015. This site is a concept ecommerce presentation; enquiries route to the works for a direct quote.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#shop">Tall Planters</a></li>
+          <li><a href="#shop">Cube &amp; Square</a></li>
+          <li><a href="#shop">Rectangular Trays</a></li>
+          <li><a href="#shop">Round Gamla</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Industrial</h5>
+        <ul>
+          <li><a href="#industrial">Custom Moulds</a></li>
+          <li><a href="#industrial">E-Rickshaw Roofs</a></li>
+          <li><a href="#industrial">Turbo Ventilators</a></li>
+          <li><a href="#industrial">Coping Moulds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Works</h5>
+        <ul>
+          <li>Faridabad, Haryana, India</li>
+          <li class="mono">GST 06CNLPK9336D1ZU</li>
+          <li><a href="#" id="footCall">Call Now</a></li>
+          <li><a href="#" id="footEnquire">Send Enquiry</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© NEW TECH ENGG. WORKS — EST. 2015, FARIDABAD</span>
+      <span>QUOTE-CART DEMO — NOT A LIVE STORE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Quote cart">
+  <div class="drawer-head">
+    <h3>Your Quote List</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M5 5l14 14M19 5 5 19" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <textarea id="quoteNote" placeholder="Quantity per item, delivery city, or finish notes…"></textarea>
+    <button class="drawer-submit" id="drawerSubmit">Send Quote Request</button>
+    <p class="drawer-note">Demo preview — this cart isn't wired to a live order system. Wire it to email or a CRM to go live.</p>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const products = [
+    {id:'p1', name:'Rectangular Tray Planter', cat:'tray', material:'FRP · Gelcoat Finish', img:'images/p1.jpg', sku:'NTE-TRY-01'},
+    {id:'p2', name:'Round Fibreglass Planter', cat:'round', material:'FRP · Matte Finish', img:'images/p2.jpg', sku:'NTE-RND-02'},
+    {id:'p3', name:'Classic Gamla', cat:'round', material:'FRP · Terracotta Tone', img:'images/p3.jpg', sku:'NTE-GML-03'},
+    {id:'p4', name:'Decorative Vase Planter', cat:'round', material:'FRP · Textured Finish', img:'images/p4.jpg', sku:'NTE-VAS-04'},
+    {id:'p5', name:'Tall Floor Planter', cat:'tall', material:'FRP · UV-Stable Gelcoat', img:'images/p5.jpg', sku:'NTE-TAL-05'},
+    {id:'p6', name:'Cube Square Planter', cat:'cube', material:'FRP · Matte Charcoal', img:'images/p6.jpg', sku:'NTE-CUB-06'},
+    {id:'p7', name:'Studio Fibre Planter', cat:'round', material:'FRP · Smooth Finish', img:'images/p7.jpg', sku:'NTE-FIB-07'},
+    {id:'p8', name:'Decorative Tray Planter', cat:'tray', material:'FRP · Dual-Tone Finish', img:'images/p8.jpg', sku:'NTE-DEC-08'}
+  ];
+  const sizes = ['S','M','L','Custom'];
+  const grid = document.getElementById('productGrid');
+
+  function svgPlus(){return '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>';}
+
+  products.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.cat = p.cat;
+    card.innerHTML = `
+      <div class="card-media">
+        <span class="sku">${p.sku}</span>
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <button class="quick-add" data-add="${p.id}" aria-label="Quick add ${p.name}">${svgPlus()}</button>
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="material">${p.material}</div>
+        <div class="size-row" data-sizes="${p.id}">
+          ${sizes.map((s,i)=>`<span class="size-pill ${i===1?'selected':''}" data-size="${s}">${s}</span>`).join('')}
+        </div>
+        <div class="card-foot">
+          <span class="price-tag">Quote on Request</span>
+          <button class="add-btn" data-add="${p.id}">${svgPlus()} Add</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  grid.addEventListener('click', e=>{
+    const sizePill = e.target.closest('.size-pill');
+    if(sizePill){
+      sizePill.parentElement.querySelectorAll('.size-pill').forEach(s=>s.classList.remove('selected'));
+      sizePill.classList.add('selected');
+      return;
+    }
+    const addBtn = e.target.closest('[data-add]');
+    if(addBtn){
+      const id = addBtn.dataset.add;
+      const card = addBtn.closest('.card');
+      const size = card.querySelector('.size-pill.selected')?.dataset.size || 'M';
+      addToCart(id, size);
+      if(addBtn.classList.contains('add-btn')){
+        addBtn.classList.add('added');
+        addBtn.innerHTML = 'Added ✓';
+        setTimeout(()=>{ addBtn.classList.remove('added'); addBtn.innerHTML = svgPlus()+' Add'; }, 1200);
+      }
+    }
+  });
+
+  document.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      const f = chip.dataset.filter;
+      document.querySelectorAll('#productGrid .card').forEach(c=>{
+        c.style.display = (f==='all' || c.dataset.cat===f) ? '' : 'none';
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-scrollfilter]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const f = el.dataset.scrollfilter;
+      const chip = document.querySelector(`.filter-chip[data-filter="${f}"]`);
+      if(chip) chip.click();
+    });
+  });
+
+  // ---- cart state ----
+  let cart = [];
+  try{ cart = JSON.parse(localStorage.getItem('nte_quote_cart')||'[]'); }catch(e){ cart = []; }
+
+  function saveCart(){
+    try{ localStorage.setItem('nte_quote_cart', JSON.stringify(cart)); }catch(e){}
+  }
+  function findProduct(id){ return products.find(p=>p.id===id); }
+
+  function addToCart(id, size){
+    const existing = cart.find(c=>c.id===id && c.size===size);
+    if(existing){ existing.qty += 1; }
+    else{ cart.push({id, size, qty:1}); }
+    saveCart();
+    renderCart();
+    showToast(findProduct(id).name + ' added to your quote list');
+    openDrawer();
+  }
+
+  function renderCart(){
+    const wrap = document.getElementById('drawerItems');
+    document.getElementById('cartCount').textContent = cart.reduce((n,c)=>n+c.qty,0);
+    if(cart.length===0){
+      wrap.innerHTML = '<div class="drawer-empty">No pieces added yet. Browse the collection and add a planter to build your quote request.</div>';
+      return;
+    }
+    wrap.innerHTML = cart.map(c=>{
+      const p = findProduct(c.id);
+      return `<div class="line-item" data-id="${c.id}" data-size="${c.size}">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="li-info">
+          <span class="nm">${p.name}</span>
+          <span class="sz">Size: ${c.size} · ${p.sku}</span>
+          <div class="li-qty">
+            <button data-act="dec">−</button>
+            <span class="mono">${c.qty}</span>
+            <button data-act="inc">+</button>
+          </div>
+          <button class="li-remove" data-act="remove">Remove</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('drawerItems').addEventListener('click', e=>{
+    const btn = e.target.closest('[data-act]');
+    if(!btn) return;
+    const row = btn.closest('.line-item');
+    const id = row.dataset.id, size = row.dataset.size;
+    const item = cart.find(c=>c.id===id && c.size===size);
+    if(!item) return;
+    if(btn.dataset.act==='inc') item.qty++;
+    if(btn.dataset.act==='dec') item.qty = Math.max(1, item.qty-1);
+    if(btn.dataset.act==='remove') cart = cart.filter(c=>!(c.id===id && c.size===size));
+    saveCart();
+    renderCart();
+  });
+
+  function openDrawer(){
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+  }
+  function closeDrawer(){
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+  document.getElementById('cartToggle').addEventListener('click', openDrawer);
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('overlay').addEventListener('click', closeDrawer);
+
+  document.getElementById('drawerSubmit').addEventListener('click', ()=>{
+    if(cart.length===0){ showToast('Add at least one item first'); return; }
+    const btn = document.getElementById('drawerSubmit');
+    btn.textContent = 'Request Captured ✓ (Demo)';
+    btn.classList.add('done');
+    showToast('Demo only — connect this form to email/CRM to send real requests');
+    setTimeout(()=>{
+      btn.textContent = 'Send Quote Request';
+      btn.classList.remove('done');
+    }, 2600);
+  });
+
+  let toastTimer;
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
+  }
+
+  ['footCall','callBtn'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('click', e=>{ e.preventDefault(); showToast('Demo — wire this to the works\' real phone number'); });
+  });
+  const footEnquire = document.getElementById('footEnquire');
+  if(footEnquire) footEnquire.addEventListener('click', e=>{ e.preventDefault(); openDrawer(); });
+
+  renderCart();
+})();
+</script>

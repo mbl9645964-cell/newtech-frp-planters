@@ -20,6 +20,17 @@
     --line-soft: rgba(27,28,21,0.08);
     --shadow: 0 18px 40px -22px rgba(27,28,21,0.35);
     --radius: 2px;
+    /* fixed — the blueprint/industrial panel is a deliberately dark
+       surface in both themes, so it never borrows the flipping --ink token */
+    --bp-bg:#1A1B12;
+    --bp-line: rgba(244,239,227,.22);
+    --bp-line-soft: rgba(244,239,227,.08);
+    --bp-text:#F4EFE3;
+    --bp-text-dim: rgba(244,239,227,.7);
+    --bp-accent:#B6C79E;
+    /* fixed — the CTA band is a deliberate moss-green surface in both themes */
+    --cta-bg:#333F27;
+    --cta-text:#F4EFE3;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -247,29 +258,29 @@
 
   /* ---------- process / industrial (blueprint) ---------- */
   .blueprint{
-    background:var(--ink);color:var(--paper);border-radius:2px;padding:clamp(28px,5vw,52px);
+    background:var(--bp-bg);color:var(--bp-text);border-radius:2px;padding:clamp(28px,5vw,52px);
     background-image:
-      linear-gradient(var(--line-soft) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+      linear-gradient(var(--bp-line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-line-soft) 1px, transparent 1px);
     background-size:34px 34px;
   }
-  .blueprint .sec-head h2, .blueprint .sec-head p{color:var(--paper);}
-  .blueprint .sec-head p{color:color-mix(in srgb, var(--paper) 70%, transparent);}
-  .blueprint .eyebrow{color:#B6C79E;}
+  .blueprint .sec-head h2, .blueprint .sec-head p{color:var(--bp-text);}
+  .blueprint .sec-head p{color:var(--bp-text-dim);}
+  .blueprint .eyebrow{color:var(--bp-accent);}
   .indu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
   .indu-card{
-    border:1px solid rgba(244,239,227,.22);padding:20px 18px;display:flex;flex-direction:column;gap:12px;
+    border:1px solid var(--bp-line);padding:20px 18px;display:flex;flex-direction:column;gap:12px;
     background:rgba(244,239,227,.03);
   }
-  .indu-card svg{width:38px;height:38px;stroke:#EFE9D8;fill:none;stroke-width:1.4;}
-  .indu-card h4{font-size:15px;color:#F4EFE3;}
-  .indu-card p{font-size:12.8px;color:rgba(244,239,227,.68);margin:0;}
-  .indu-card .hsn{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#B6C79E;letter-spacing:.04em;}
+  .indu-card svg{width:38px;height:38px;stroke:var(--bp-text);fill:none;stroke-width:1.4;}
+  .indu-card h4{font-size:15px;color:var(--bp-text);}
+  .indu-card p{font-size:12.8px;color:var(--bp-text-dim);margin:0;}
+  .indu-card .hsn{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--bp-accent);letter-spacing:.04em;}
   .process-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:28px;}
-  .process-step{border-top:2px solid rgba(244,239,227,.3);padding-top:12px;}
-  .process-step .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#B6C79E;}
-  .process-step h5{font-family:'Fraunces',serif;font-size:14.5px;color:#F4EFE3;margin:6px 0 4px;font-weight:600;}
-  .process-step p{font-size:12px;color:rgba(244,239,227,.62);margin:0;}
+  .process-step{border-top:2px solid var(--bp-line);padding-top:12px;}
+  .process-step .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--bp-accent);}
+  .process-step h5{font-family:'Fraunces',serif;font-size:14.5px;color:var(--bp-text);margin:6px 0 4px;font-weight:600;}
+  .process-step p{font-size:12px;color:var(--bp-text-dim);margin:0;}
 
   /* ---------- factsheet / about ---------- */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
@@ -291,11 +302,11 @@
   /* ---------- CTA band ---------- */
   .cta-band{
     display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
-    background:var(--moss-dark);color:#F4EFE3;padding:clamp(30px,5vw,48px);border-radius:2px;
+    background:var(--cta-bg);color:var(--cta-text);padding:clamp(30px,5vw,48px);border-radius:2px;
   }
-  .cta-band h3{color:#F4EFE3;font-size:clamp(22px,3vw,30px);max-width:26ch;}
-  .cta-band .btn-outline{border-color:#F4EFE3;color:#F4EFE3;}
-  .cta-band .btn-outline:hover{background:#F4EFE3;color:var(--moss-dark);}
+  .cta-band h3{color:var(--cta-text);font-size:clamp(22px,3vw,30px);max-width:26ch;}
+  .cta-band .btn-outline{border-color:var(--cta-text);color:var(--cta-text);}
+  .cta-band .btn-outline:hover{background:var(--cta-text);color:var(--cta-bg);}
 
   /* ---------- footer ---------- */
   footer{padding-block:48px 30px;}

@@ -153,6 +153,21 @@
   .btn-outline{border-color:var(--ink);color:var(--ink);}
   .btn-outline:hover{background:var(--ink);color:var(--paper);}
   .menu-toggle{display:none;}
+  @media (max-width:980px){ .menu-toggle{display:flex;} }
+
+  /* ---------- mobile nav ---------- */
+  .mobile-nav{
+    display:none;position:fixed;inset:0;z-index:55;background:var(--paper);
+    flex-direction:column;padding:96px 24px 32px;gap:2px;overflow-y:auto;
+  }
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{font-family:'Fraunces',serif;font-size:21px;font-weight:600;padding:16px 0;border-bottom:1px solid var(--line);}
+
+  /* ---------- grain overlay ---------- */
+  .grain{
+    position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -185,6 +200,16 @@
     box-shadow:var(--shadow);max-width:230px;
   }
   .hero-tag b{display:block;font-family:'Fraunces',serif;font-size:14px;margin-bottom:2px;}
+
+  /* ---------- trust strip ---------- */
+  .trust-strip{background:var(--panel);border-bottom:1px solid var(--line);}
+  .trust-row{display:flex;padding-block:16px;}
+  .trust-item{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:9px;
+    font-size:12px;font-weight:600;color:var(--ink-soft);border-right:1px solid var(--line);padding-inline:12px;text-align:center;
+  }
+  .trust-item:last-child{border-right:none;}
+  .trust-item svg{width:17px;height:17px;stroke:var(--moss);flex:none;}
 
   /* ---------- section frame ---------- */
   section{padding-block:clamp(52px,7vw,88px);border-bottom:1px solid var(--line);}
@@ -299,6 +324,45 @@
   .rating-bar{flex:1;height:6px;background:var(--paper-dim);border-radius:4px;overflow:hidden;}
   .rating-bar > i{display:block;height:100%;background:var(--moss);}
 
+  /* ---------- material & finish ---------- */
+  .material-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start;}
+  .compare-table{border:1px solid var(--line);}
+  .compare-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .compare-row:last-child{border-bottom:none;}
+  .compare-row > div{padding:14px 14px;font-size:12.8px;}
+  .compare-row.head{background:var(--paper-dim);font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);}
+  .compare-row .ours{color:var(--moss);font-weight:700;}
+  .finish-panel{border:1px solid var(--line);background:var(--panel);padding:24px;display:flex;flex-direction:column;gap:16px;}
+  .swatch-row{display:flex;flex-direction:column;gap:14px;margin-top:2px;}
+  .swatch{display:flex;align-items:center;gap:12px;}
+  .swatch .chip{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);flex:none;}
+  .swatch .info b{display:block;font-size:13px;}
+  .swatch .info span{font-size:11.5px;color:var(--ink-soft);}
+
+  /* ---------- applications ---------- */
+  .app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .app-card{border:1px solid var(--line);padding:22px 18px;display:flex;flex-direction:column;gap:12px;background:var(--panel);}
+  .app-card svg{width:32px;height:32px;stroke:var(--moss);fill:none;stroke-width:1.4;}
+  .app-card h4{font-size:15px;}
+  .app-card p{font-size:12.8px;color:var(--ink-soft);margin:0;}
+
+  /* ---------- enquiry ---------- */
+  .enquiry-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start;}
+  .enquiry-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+  .enquiry-list li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-soft);}
+  .enquiry-list li svg{width:17px;height:17px;stroke:var(--moss);flex:none;margin-top:2px;}
+  .enquiry-form{border:1px solid var(--line);background:var(--panel);padding:26px;display:flex;flex-direction:column;gap:14px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);}
+  .field input, .field select, .field textarea{
+    border:1px solid var(--line);background:var(--paper-dim);padding:10px 12px;font-family:inherit;font-size:13.5px;color:var(--ink);
+  }
+  .field textarea{resize:vertical;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .enquiry-submit{padding:14px;background:var(--ink);color:var(--paper);border:none;font-weight:700;font-size:13.5px;}
+  .enquiry-submit.done{background:var(--moss);}
+  .enquiry-note{font-size:11px;color:var(--ink-soft);margin:0;}
+
   /* ---------- CTA band ---------- */
   .cta-band{
     display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
@@ -362,25 +426,45 @@
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
+  /* ---------- reveal-on-scroll ---------- */
+  /* opacity:0 only applies once JS confirms it's alive (html.js-ready) and
+     will flip it to .in — so a page with JS disabled/blocked stays fully visible */
+  html.js-ready .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    html.js-ready .reveal{opacity:1;transform:none;transition:none;}
+  }
+
   /* ---------- responsive ---------- */
   @media (max-width:980px){
     nav.primary{display:none;}
-    .menu-toggle{display:flex;}
     .hero{grid-template-columns:1fr;}
     .hero-visual{min-height:320px;order:-1;}
     .cat-grid, .product-grid{grid-template-columns:repeat(2,1fr);}
-    .indu-grid{grid-template-columns:repeat(2,1fr);}
+    .indu-grid, .app-grid{grid-template-columns:repeat(2,1fr);}
     .process-strip{grid-template-columns:repeat(2,1fr);}
     .about-grid{grid-template-columns:1fr;gap:34px;}
+    .material-grid{grid-template-columns:1fr;}
+    .enquiry-grid{grid-template-columns:1fr;gap:28px;}
     .foot-grid{grid-template-columns:1fr 1fr;}
+    .trust-row{flex-wrap:wrap;}
+    .trust-item{flex:1 1 45%;border-right:none;border-bottom:1px solid var(--line);padding-block:10px;}
   }
   @media (max-width:520px){
-    .cat-grid, .product-grid, .indu-grid, .process-strip{grid-template-columns:1fr 1fr;}
+    .cat-grid, .product-grid, .indu-grid, .process-strip, .app-grid{grid-template-columns:1fr 1fr;}
     .foot-grid{grid-template-columns:1fr;}
     .hero-stats{gap:16px;}
     .cta-band{flex-direction:column;align-items:flex-start;}
+    .compare-row{grid-template-columns:1fr;}
+    .compare-row > div{padding:8px 14px;}
+    .compare-row > div:first-child{padding-top:14px;font-weight:700;}
+    .compare-row > div:last-child{padding-bottom:14px;}
+    .field-row{grid-template-columns:1fr;}
   }
 </style>
+
+<script>document.documentElement.classList.add('js-ready');</script>
+<div class="grain" aria-hidden="true"></div>
 
 <div class="announce">MANUFACTURER SINCE 2015 <span>&middot;</span> FARIDABAD, HARYANA <span>&middot;</span> GST 06CNLPK9336D1ZU &middot; VERIFIED <span>&middot;</span> 4.5★ FROM 17 BUYER REVIEWS</div>
 
@@ -393,12 +477,21 @@
     <nav class="primary">
       <a href="#shop">Planters &amp; Gamla</a>
       <a href="#industrial">Industrial FRP</a>
-      <a href="#process">Manufacturing</a>
+      <a href="#material">Material &amp; Finish</a>
+      <a href="#applications">Applications</a>
       <a href="#about">Factory &amp; Trust</a>
-      <a href="#contact">Contact</a>
+      <a href="#enquiry">Contact</a>
+    </nav>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="#shop">Planters &amp; Gamla</a>
+      <a href="#industrial">Industrial FRP</a>
+      <a href="#material">Material &amp; Finish</a>
+      <a href="#applications">Applications</a>
+      <a href="#about">Factory &amp; Trust</a>
+      <a href="#enquiry">Contact</a>
     </nav>
     <div class="head-actions">
-      <button class="icon-btn" id="menuToggle" aria-label="Menu" style="display:none;">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
       </button>
       <button class="icon-btn" id="cartToggle" aria-label="Open quote cart">
@@ -433,7 +526,16 @@
     </div>
   </section>
 
-  <section id="shop" class="wrap">
+  <div class="trust-strip">
+    <div class="wrap trust-row">
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg> TrustSEAL Verified</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Payment Protection</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 7h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7Z"/><path d="M4 7 6 3h12l2 4"/><path d="M9 11h6"/></svg> GST Registered Since 2017</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg> 11 Years on IndiaMART</div>
+    </div>
+  </div>
+
+  <section id="shop" class="wrap reveal">
     <div class="sec-head">
       <div>
         <span class="eyebrow">The Collection</span>
@@ -454,7 +556,7 @@
     <div class="product-grid" id="productGrid"></div>
   </section>
 
-  <section class="wrap" style="padding-top:0;">
+  <section class="wrap reveal" style="padding-top:0;">
     <div class="cat-grid">
       <a class="cat-card" href="#shop" data-scrollfilter="tall">
         <img src="images/p5.jpg" alt="Tall planters">
@@ -475,7 +577,37 @@
     </div>
   </section>
 
-  <section id="industrial" class="wrap">
+  <section id="material" class="wrap reveal">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Material Science</span>
+        <h2>Fibreglass, chosen on purpose</h2>
+        <p>FRP isn't a cheaper stand-in for cement or clay — for outdoor planting, it behaves differently in ways that matter over years, not just on day one.</p>
+      </div>
+    </div>
+    <div class="material-grid">
+      <div class="compare-table">
+        <div class="compare-row head"><div>Property</div><div>FRP (Ours)</div><div>Cement / Clay</div></div>
+        <div class="compare-row"><div>Weight</div><div class="ours">Light — one person repositions it</div><div>Heavy — needs machinery to move</div></div>
+        <div class="compare-row"><div>Water &amp; weather</div><div class="ours">Sealed gelcoat, won't absorb</div><div>Porous — seeps, stains, spalls</div></div>
+        <div class="compare-row"><div>Cracking risk</div><div class="ours">Flexes slightly, resists impact</div><div>Cracks under frost or a knock</div></div>
+        <div class="compare-row"><div>Colour &amp; texture</div><div class="ours">Any custom colour or finish</div><div>Limited to the material's own tone</div></div>
+        <div class="compare-row"><div>Lead time</div><div class="ours">Cast to your size, on order</div><div>Often fixed stock sizes only</div></div>
+      </div>
+      <div class="finish-panel">
+        <span class="eyebrow">Available Finishes</span>
+        <h4 style="font-size:17px;margin-top:4px;">Pick a tone, or match your own</h4>
+        <div class="swatch-row">
+          <div class="swatch"><span class="chip" style="background:#3B3A32;"></span><div class="info"><b>Charcoal Matte</b><span>Our most-ordered finish</span></div></div>
+          <div class="swatch"><span class="chip" style="background:#9C9686;"></span><div class="info"><b>Stone Grey</b><span>Architectural, low-contrast</span></div></div>
+          <div class="swatch"><span class="chip" style="background:#B56B42;"></span><div class="info"><b>Terracotta Wash</b><span>Classic gamla tone</span></div></div>
+          <div class="swatch"><span class="chip" style="background:conic-gradient(from 0deg,#B56B42,#9C9686,#4B5A3B,#3B3A32,#B56B42);"></span><div class="info"><b>Custom RAL Match</b><span>Confirmed against a sample</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="industrial" class="wrap reveal">
     <div class="blueprint">
       <div class="sec-head">
         <div>
@@ -483,7 +615,7 @@
           <h2>Custom FRP &amp; industrial mouldings</h2>
           <p>Where it started: New Tech Engg. Works was founded on fibreglass work for transport and infrastructure. We still take on custom mould jobs at the same Faridabad workshop.</p>
         </div>
-        <a href="#contact" class="btn" style="background:#F4EFE3;color:#1B1C15;flex:none;">Request a Custom Quote</a>
+        <a href="#enquiry" class="btn" style="background:var(--bp-text);color:var(--bp-bg);flex:none;">Request a Custom Quote</a>
       </div>
       <div class="indu-grid">
         <div class="indu-card">
@@ -522,7 +654,39 @@
     </div>
   </section>
 
-  <section id="about" class="wrap">
+  <section id="applications" class="wrap reveal">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Where They End Up</span>
+        <h2>Who we supply</h2>
+        <p>Same works, different buyers — from a single hotel lobby order to a mould run for infrastructure.</p>
+      </div>
+    </div>
+    <div class="app-grid">
+      <div class="app-card">
+        <svg viewBox="0 0 48 48"><path d="M6 20h36M10 20v20h28V20" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 40V30h6v10M26 40V30h6v10" stroke-linejoin="round"/><path d="M6 20 24 8l18 12" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <h4>Hospitality &amp; Hotels</h4>
+        <p>Lobby, poolside and terrace planting — matched to a property's finish palette.</p>
+      </div>
+      <div class="app-card">
+        <svg viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="36" rx="1"/><path d="M14 14h6v6h-6zM28 14h6v6h-6zM14 26h6v6h-6zM28 26h6v6h-6z"/></svg>
+        <h4>Residential Societies</h4>
+        <p>Entrance avenues, common areas and balcony planting at housing-society scale.</p>
+      </div>
+      <div class="app-card">
+        <svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="26" rx="1"/><path d="M6 18h36M16 10v-4h16v4"/></svg>
+        <h4>Corporate &amp; Retail Campuses</h4>
+        <p>Office parks, malls and showroom frontages needing a consistent, durable look.</p>
+      </div>
+      <div class="app-card">
+        <svg viewBox="0 0 48 48"><path d="M6 34h36M10 34V20l8-6h12l8 6v14" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 34v-8h12v8" stroke-linejoin="round"/></svg>
+        <h4>Government &amp; Infrastructure</h4>
+        <p>Custom mould work — including the platform coping moulds we cast for railway projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap reveal">
     <div class="about-grid">
       <div class="about-copy">
         <span class="eyebrow">About the Works</span>
@@ -554,13 +718,52 @@
     </div>
   </section>
 
-  <section class="wrap" style="border-bottom:none;">
+  <section class="wrap reveal">
     <div class="cta-band">
       <h3>Fitting out a hotel, society or landscape project? Talk to the works directly.</h3>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="#contact" class="btn" style="background:#F4EFE3;color:var(--moss-dark);">Request Bulk Quote</a>
+        <a href="#enquiry" class="btn" style="background:var(--cta-text);color:var(--cta-bg);">Request Bulk Quote</a>
         <a href="tel:+91" class="btn btn-outline">Call the Workshop</a>
       </div>
+    </div>
+  </section>
+
+  <section id="enquiry" class="wrap reveal" style="border-bottom:none;">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Get a Direct Quote</span>
+        <h2>Tell us what you're planting into</h2>
+        <p>Share the piece, the size and where it's headed — we'll come back with a working quote, usually within a couple of working days.</p>
+      </div>
+    </div>
+    <div class="enquiry-grid">
+      <div class="enquiry-copy">
+        <ul class="enquiry-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> TrustSEAL Verified manufacturer, GST 06CNLPK9336D1ZU</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Payment Protection available via IndiaMART</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Crated and dispatched pan-India from Faridabad</li>
+        </ul>
+      </div>
+      <form class="enquiry-form" id="enquiryForm">
+        <div class="field-row">
+          <div class="field"><label for="fName">Name</label><input id="fName" required placeholder="Your name"></div>
+          <div class="field"><label for="fPhone">Phone</label><input id="fPhone" required placeholder="10-digit mobile" inputmode="tel"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="fCity">City</label><input id="fCity" placeholder="Delivery city"></div>
+          <div class="field">
+            <label for="fInterest">Interested In</label>
+            <select id="fInterest">
+              <option>Planters &amp; Gamla</option>
+              <option>Industrial FRP</option>
+              <option>Custom Mould</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="fMsg">Requirement</label><textarea id="fMsg" rows="3" placeholder="Piece, quantity, size, finish…"></textarea></div>
+        <button type="submit" class="enquiry-submit" id="enquirySubmit">Send Enquiry</button>
+        <p class="enquiry-note">Demo preview — connect this form to email/CRM to receive real enquiries.</p>
+      </form>
     </div>
   </section>
 </main>
@@ -596,7 +799,7 @@
           <li>Faridabad, Haryana, India</li>
           <li class="mono">GST 06CNLPK9336D1ZU</li>
           <li><a href="#" id="footCall">Call Now</a></li>
-          <li><a href="#" id="footEnquire">Send Enquiry</a></li>
+          <li><a href="#enquiry">Send Enquiry</a></li>
         </ul>
       </div>
     </div>
@@ -798,8 +1001,48 @@
     const el = document.getElementById(id);
     if(el) el.addEventListener('click', e=>{ e.preventDefault(); showToast('Demo — wire this to the works\' real phone number'); });
   });
-  const footEnquire = document.getElementById('footEnquire');
-  if(footEnquire) footEnquire.addEventListener('click', e=>{ e.preventDefault(); openDrawer(); });
+
+  // ---- reveal-on-scroll (below-the-fold sections only) ----
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(el=>io.observe(el));
+  } else {
+    revealEls.forEach(el=>el.classList.add('in'));
+  }
+
+  // ---- mobile nav ----
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', ()=>{
+    const open = mobileNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    mobileNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded','false');
+  }));
+
+  // ---- enquiry form (demo) ----
+  const enquiryForm = document.getElementById('enquiryForm');
+  if(enquiryForm){
+    enquiryForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const btn = document.getElementById('enquirySubmit');
+      btn.textContent = 'Enquiry Captured ✓ (Demo)';
+      btn.classList.add('done');
+      showToast('Demo only — connect this form to email/CRM to receive real enquiries');
+      setTimeout(()=>{
+        btn.textContent = 'Send Enquiry';
+        btn.classList.remove('done');
+        enquiryForm.reset();
+      }, 2600);
+    });
+  }
 
   renderCart();
 })();
